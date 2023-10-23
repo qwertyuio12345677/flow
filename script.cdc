@@ -1,5 +1,5 @@
-import Authentication from 0x01
+import Bakery from 0x05
 
 pub fun main(account: Address): Bakery.Product {
-    return Bakery.Product[account]!
+    return Bakery.bakery[account]!
 }
