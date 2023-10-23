@@ -1,10 +1,10 @@
-// Transaction to add items to the bakery
-transaction {
+import Authentication from 0x01
+
+transaction(Item: String, SupplyAgent: String, price: Int, account: Address) {
+
+    prepare(signer: AuthAccount) {}
+
     execute {
-        let bakeryAccount = getAccount(0x01) 
-        let adminRef = bakeryAccount.getCapability<&BakeryContract.BakeryItemCollection{BakeryContract.BakeryItemPublic}>(BakeryContract.BakeryItemPublicPath)!
-        
-        adminRef.borrow()?.addItem(itemName: "Croissant", itemPrice: 2.99)
-        adminRef.borrow()?.addItem(itemName: "Muffin", itemPrice: 1.99)
+        Authentication.addStores(Item: Item, SupplyAgent: SupplyAgent, price : price, account: account)
     }
 }
