@@ -1,23 +1,28 @@
-pub contract BakeryContract {
+pub contract Bakery {
 
-    pub struct BakeryItem {
-        pub var itemName: String
-        pub var itemPrice: UFix64
+    pub var bakery: {Address: Product}
+    
+    pub struct Product {
+        pub let NameOfItem: String
+        pub let SupplyAgent: String
+        pub let price: Int
+        pub let account: Address
+
+        init(_NameOfItem: String, _SupplyAgent: String, _price: Int, _account: Address) {
+            self.NameOfItem = _NameOfItem
+            self.SupplyAgent = _SupplyAgent
+            self.price = _price
+            self.account = _account
+        }
     }
 
-    pub var bakeryItems: [BakeryItem]
-
-    pub fun init() {
-        self.bakeryItems = []
+    pub fun addStores(NameOfItem: String, SupplyAgent: String, price: Int, account: Address) {
+        let newStores = Product(_NameOfItem: NameOfItem, _SupplyAgent: SupplyAgent, _price: price, _account: account)
+        self.bakery[account] = newStores
     }
 
-    pub fun addItem(itemName: String, itemPrice: UFix64) {
-        let newItem = BakeryItem(itemName: itemName, itemPrice: itemPrice)
-        self.bakeryItems.append(newItem)
+    init() {
+        self.bakery = {}
     }
 
-    // Define a script to read the bakery items
-    pub fun getBakeryItems(): [BakeryItem] {
-        return self.bakeryItems
-    }
 }
