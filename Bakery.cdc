@@ -16,9 +16,9 @@ pub contract Bakery {
         }
     }
 
-    pub fun addStores(Item: String, SupplyAgent: String, price: Int, account: Address) {
-        let newStores = Product(_Item: Item, _SupplyAgent: SupplyAgent, _price: price, _account: account)
-        self.bakery[account] = newStores
+    pub fun addItem(Item: String, SupplyAgent: String, price: Int, account: Address) {
+        let newItem = Product(_Item: Item, _SupplyAgent: SupplyAgent, _price: price, _account: account)
+        self.bakery[account] = newItem
     }
 
     init() {
